@@ -37,5 +37,5 @@ while(LENG > i):
         RES.append(int(ST[i][1]))
     i += 1
 
-with open(os.path.splitext(os.path.basename(sys.argv[1]))[0] + ".bin","wb") as file:
+with open(os.path.splitext(os.path.basename(sys.argv[1]))[0] + ".byf","wb") as file:
     file.write(RES)
