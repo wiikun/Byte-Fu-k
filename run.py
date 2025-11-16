@@ -41,6 +41,8 @@ def lpEnd():
         index = jmpMap[index]
 
 def prt():
+    if not slot[ptr]:
+        return
     print(chr(slot[ptr]) ,end="")
 
 def ipt():
