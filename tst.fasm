@@ -1,0 +1,24 @@
+add 72
+putc
+add 29
+putc
+add 7
+putc
+putc
+add 3
+putc
+sub 67
+putc
+add 75
+putc 
+sub 8
+putc
+add 3
+putc
+sub 6
+putc
+sub 8
+putc
+rig 1
+add 10
+putc
