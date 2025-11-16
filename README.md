@@ -8,5 +8,7 @@ add:+
 sub:-  
 rig:>  
 lef:<  
+loop:[  
+end:]  
 putc:.  
 putc:,
