@@ -1,7 +1,7 @@
 import sys
 
 if len(sys.argv) < 2:
-    print(f"usage:python {sys.argv[0]} file.bin")
+    print(f"usage:python {sys.argv[0]} file.byf")
     sys.exit(1)
 
 slot = [b"\x00" for _ in range(3000)]
