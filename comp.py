@@ -25,7 +25,8 @@ OPTAB = {
 }
     
 with open(sys.argv[1]) as file:
-    ST = [j.split(" ") for j in file.read().split("\n")]
+    PP = re.sub(";.+?;","",file.read())
+    ST = [j.split(" ") for j in PP.split("\n")]
 
 LENG = len(ST)
 RES = bytearray()

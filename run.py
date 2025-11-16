@@ -4,22 +4,23 @@ if len(sys.argv) < 2:
     print(f"usage:python {sys.argv[0]} file.byf")
     sys.exit(1)
 
-slot = [b"\x00" for _ in range(3000)]
+slot = [0x00 for _ in range(3000)]
 ptr = 0
 jmpMap = {}
 mapStack = []
 jmpI = []
 index = 0
+buf = []
 
 #ハンドラここから
 
 def inc(arg):
-    val = slot[ptr][0]
-    slot[ptr] = bytes([(val + arg) % 256])
+    val = slot[ptr]
+    slot[ptr] = val + arg
     
 def dec(arg):
-    val = slot[ptr][0]
-    slot[ptr] = bytes([(val - arg) % 256])
+    val = slot[ptr]
+    slot[ptr] = val - arg
 
 def ptf(arg):
     global ptr
@@ -31,26 +32,25 @@ def ptb(arg):
     
 def lpStr():
     global index
-    if not slot[ptr][0]:
+    if not slot[ptr]:
         index = jmpMap[index] + 1
 
 def lpEnd():
     global index
-    if slot[ptr][0]:
+    if slot[ptr]:
         index = jmpMap[index]
 
 def prt():
-    global slot,ptr
-    sys.stdout.buffer.write(slot[ptr])
-    sys.stdout.flush()
+    print(chr(slot[ptr]) ,end="")
 
 def ipt():
-    global slot,ptr
-    in_b = sys.stdin.buffer.read(1)
-    if in_b:
-        slot[ptr] = in_b
+    global slot,ptr,buf
+    if len(buf) < 1:
+        buf = [i for i in input()] + ["\n","\0"]
+    if buf:
+        slot[ptr] = ord(buf.pop(0))
     else:
-        slot[ptr] = b"\x00"
+        slot[ptr] = int(00)
 
 TABLE = {
     0x00:inc,
